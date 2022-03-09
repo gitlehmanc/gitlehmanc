@@ -10,3 +10,10 @@ testing <- diabetes[-intrain,]
 glm(as.factor(class)~.,family = binomial(link = "logit"),data = training)
 LogModel <- glm(as.factor(class)~.,family = binomial(link = "logit"),data = training)
 summary(LogModel)
+testing$class <- as.character(testing$class)
+testing$css[testing$class=="Negative"] <- "0"
+testing$class[testing$class=="Postitive"] <- "1"
+fitted.results <- predict(LogModel, newdata=testing, type="response")
+fitted.results <- ifelse(fitted.results >0.5,1,0)
+misClasificError <- man(fitted.results != testing$class)
+print(past('Logistic Regression Accuracy', 1-misClasificError))
