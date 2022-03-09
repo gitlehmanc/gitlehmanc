@@ -1,0 +1,2 @@
+load("C:/Users/cassa/Desktop/SCHOOL/MIS480/Diabetes/.RData")
+summary(diabetes)
