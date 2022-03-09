@@ -1,2 +1,10 @@
-load("C:/Users/cassa/Desktop/SCHOOL/MIS480/Diabetes/.RData")
+setwd("/users/cassa/Desktop/SCHOOL/MIS480/DRG_INFO")
+DRG <- read.csv("hospital_inpatient_characteristics_ms_drg_by_patient_county_of_residence.csv", header = TRUE)
+setwd("/users/cassa/Desktop/SCHOOL/MIS480/Diabetes")
+diabetes <- read.csv("diabetes_data_upload _Y_N.csv", header = TRUE)
 summary(diabetes)
+intrain <- createDataPartition(diabetes$class, p=0.7, list = FALSE)
+set.seed(156)
+training <- diabetes[intrain,]
+testing <- diabetes[-intrain,]
+glm(as.factor(class)~.,family = binomial(link = "logit"),data = training)
