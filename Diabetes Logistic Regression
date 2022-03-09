@@ -8,3 +8,5 @@ set.seed(156)
 training <- diabetes[intrain,]
 testing <- diabetes[-intrain,]
 glm(as.factor(class)~.,family = binomial(link = "logit"),data = training)
+LogModel <- glm(as.factor(class)~.,family = binomial(link = "logit"),data = training)
+summary(LogModel)
